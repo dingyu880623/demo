@@ -1,6 +1,11 @@
 ---
 - hosts: 127.0.0.1
   tasks:
+    - name: remove tomcat container
+      docker:
+        name: demo
+        image: 192.168.1.150:5000/demo
+        state: absent
     - name: start demo container
       docker:
         image: "192.168.1.150:5000/demo"
