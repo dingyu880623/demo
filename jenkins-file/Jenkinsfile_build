@@ -1,0 +1,24 @@
+#!/groovy
+
+pipeline {
+    agent {
+      node {
+          label "host-vm"
+      }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh "./build.sh"
+                sh "mv *.war docker/"
+            }
+        }
+        stage('Docker') {
+            steps {
+                sh "cd docker && docker build -t demo ."
+                sh "docker tag demo:latest 10.93.128.151:5000/demo"
+                sh "docker push 10.93.128.151:5000/demo"
+            }
+        }
+    }
+}

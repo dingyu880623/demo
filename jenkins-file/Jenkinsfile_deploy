@@ -1,0 +1,23 @@
+#!/groovy
+
+pipeline {
+    agent {
+      node {
+          label "deploy-vm"
+      }
+    }
+    stages {
+        stage('Deploy') {
+            steps {
+                 ansiblePlaybook(
+                    playbook: 'ansible/deploy.yml'
+                 )
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "test.sh"
+            }
+        }
+    }
+}

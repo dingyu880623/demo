@@ -1,0 +1,8 @@
+---
+- hosts: 127.0.0.1
+  tasks:
+    - name: start tomcat container
+      docker:
+        image: "10.93.128.151:5000/demo"
+        name: demo
+        ports: "8080:8080"
