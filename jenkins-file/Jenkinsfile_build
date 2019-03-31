@@ -16,8 +16,8 @@ pipeline {
         stage('Docker') {
             steps {
                 sh "cd docker && docker build -t demo ."
-                sh "docker tag demo:latest 10.93.128.151:5000/demo"
-                sh "docker push 10.93.128.151:5000/demo"
+                sh "docker tag demo:latest 192.168.1.150:5000/demo"
+                sh "docker push 192.168.1.150:5000/demo"
             }
         }
     }
